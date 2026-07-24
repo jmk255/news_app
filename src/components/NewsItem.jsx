@@ -1,9 +1,56 @@
-import React from 'react'
+import styled from "styled-components"
 
-function NewsItem() {
+const NewsItemBlock = styled.div`
+  display: flex;
+  
+  .thumbnail {
+    margin-right: 1rem;
+    
+    img{
+      display:block;
+      width:160px;
+      height:100px;
+      object-fit:cover;
+      object-position:left top;
+    }
+  }
+  .contents {
+    h2{
+      margin:0;
+      a{color:black;}
+    }
+    p{
+      margin:0;
+      line-height:1.5;
+      margin-top:0.5rem;
+      white-space:normal;
+    }
+  }
+  & + &{
+    margin-top:3rem;
+  }
+`
+
+function NewsItem({result}) { //전달 받은 result 객체를 받아서
+  const {title, description, link, image_url} = result;//각각의 프로퍼티 값을 추출
   return (
-    <div>NewsItem</div>
+    <NewsItemBlock>
+      {image_url && (
+        <div className="thumbnail">
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <img src={image_url} alt="thumbnail" />
+          </a>
+        </div>
+      )}
+      <div className="contents">
+        <h2>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        </h2>
+        <p>{description}</p>
+      </div>
+    </NewsItemBlock>
   )
 }
-
 export default NewsItem

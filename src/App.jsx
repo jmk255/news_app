@@ -1,9 +1,13 @@
+import Categories from './components/Categories';
 import NewsList from './components/NewsList';
 
 function App() {
 
   return (
-    <NewsList />
+    <>
+      <Categories />
+      <NewsList />
+    </>
   )
 }
 
